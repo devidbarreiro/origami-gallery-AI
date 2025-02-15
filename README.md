@@ -42,6 +42,7 @@ cd origami-gallery-AI
 ### 2. Configurar Backend
 
 ```bash
+
 # Instalar dependencias de PHP
 composer install
 
@@ -51,6 +52,9 @@ cp .env.example .env
 # Generar clave de aplicación
 php artisan key:generate
 
+# Asegúrate de haber creado el enlace simbólico para que el contenido de storage/app/public sea accesible públicamente
+php artisan storage:link
+
 # Configurar base de datos en .env
 # Edita los detalles de conexión de base de datos
 
@@ -58,7 +62,24 @@ php artisan key:generate
 php artisan migrate
 ```
 
-### 3. Configurar permisos del directorio `storage`
+### 3. Abre el archivo `.env` y ajusta los parámetros de conexión a la base de datos, por ejemplo:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3307
+DB_DATABASE=mi_laravel_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+**Nota:** Asegúrate de que el servidor MySQL esté corriendo en el puerto indicado y que la base de datos `mi_laravel_db` exista. En caso de no existir, créala mediante tu herramienta de gestión (phpMyAdmin, MySQL Workbench, etc.) o usando la línea de comandos:
+
+```bash
+CREATE DATABASE mi_laravel_db;
+```
+
+### 4. Configurar permisos del directorio `storage`
 
 En caso de encontrar un error relacionado con la ruta de caché de las vistas, asegúrate de que el directorio `storage` tenga los permisos adecuados ejecutando el siguiente comando:
 
@@ -73,7 +94,7 @@ En caso de encontrar un error relacionado con la ruta de caché de las vistas, a
   icacls storage /grant "Everyone:(OI)(CI)F" /t
   ```
 
-### 4. Configurar Frontend
+### 5. Configurar Frontend
 
 ```bash
 # Instalar dependencias de Node
@@ -83,7 +104,7 @@ npm install
 npm run dev
 ```
 
-### 5. Configurar OpenAI
+### 6. Configurar OpenAI
 
 1. Obtén tu API key en [OpenAI Platform](https://platform.openai.com/)
 2. Añade la clave en tu archivo `.env`:
@@ -91,7 +112,7 @@ npm run dev
    OPENAI_API_KEY=tu_clave_api_aqui
    ```
 
-### 6. Iniciar Servidores
+### 7. Iniciar Servidores
 
 Terminal 1 (Backend):
 
