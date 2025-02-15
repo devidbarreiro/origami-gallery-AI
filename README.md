@@ -58,3 +58,78 @@ php artisan key:generate
 # Ejecutar migraciones
 php artisan migrate
 ```
+
+### 3. Configurar Frontend
+
+```bash
+# Instalar dependencias de Node
+npm install
+
+# Compilar assets
+npm run dev
+```
+
+### 4. Configurar OpenAI
+
+1. Obtén tu API key en [OpenAI Platform](https://platform.openai.com/)
+2. Añade la clave en tu archivo `.env`:
+
+```bash
+OPENAI_API_KEY=tu_clave_api_aqui
+```
+
+### 5. Iniciar Servidores
+
+Terminal 1 (Backend):
+
+```bash
+php artisan serve
+```
+
+Terminal 2 (Frontend):
+
+```bash
+  npm run dev
+```
+
+## 🖼️ Capturas de Pantalla
+
+
+
+
+## 🔒 Variables de Entorno
+
+* `OPENAI_API_KEY`: Clave de API de OpenAI
+* `DB_CONNECTION`: Tipo de base de datos
+* `DB_HOST`: Host de la base de datos
+* `DB_PORT`: Puerto de la base de datos
+* `DB_DATABASE`: Nombre de la base de datos
+* `DB_USERNAME`: Usuario de la base de datos
+* `DB_PASSWORD`: Contraseña de la base de datos
+
+
+### Instrucciones Adicionales
+
+1. Crea un archivo `.env.example` con las variables de entorno necesarias (sin valores sensibles)
+2. Añade un archivo `.gitignore` para excluir:
+   ```bash
+   /node_modules
+   /public/hot
+   /public/storage
+   /storage/*.key
+   /vendor
+   .env
+   .env.backup
+   .phpunit.result.cache
+   ```
+
+
+3. Incluye un script en `package.json` para facilitar la instalación:
+
+```json
+"scripts": {
+  "postinstall": "npm run dev",
+  "dev": "vite",
+  "build": "vite build"
+}
+```
