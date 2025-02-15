@@ -1,0 +1,61 @@
+# Directorios de dependencias
+/node_modules
+/vendor
+
+# Archivos de configuración local
+.env
+.env.backup
+.env.production
+.env.local
+
+# Archivos de caché y logs
+/storage/*.key
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/*.sqlite
+*.log
+
+# Compilados de frontend
+/public/build
+/public/hot
+/public/storage
+/public/css
+/public/js
+/public/vendor
+
+# Archivos de IDE y editores
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de caché del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de Composer
+composer.lock
+
+# Archivos de configuración de npm/Yarn
+package-lock.json
+yarn.lock
+
+# Directorios de pruebas y compilación
+/bootstrap/cache/*
+/storage/framework/testing
+/tests/coverage
+
+# Archivos generados por Vite
+/public/vite.config.js
+/public/mix-manifest.json
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+# Archivos de seguridad
+.phpunit.result.cache
