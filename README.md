@@ -35,7 +35,7 @@ Origami Gallery es una aplicación web fullstack que permite a los usuarios crea
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/origami-gallery.git
+git clone https://github.com/devidbarreiro/origami-gallery-AI.git
 cd origami-gallery
 ```
 
@@ -94,9 +94,6 @@ Terminal 2 (Frontend):
 
 ## 🖼️ Capturas de Pantalla
 
-
-
-
 ## 🔒 Variables de Entorno
 
 * `OPENAI_API_KEY`: Clave de API de OpenAI
@@ -107,11 +104,11 @@ Terminal 2 (Frontend):
 * `DB_USERNAME`: Usuario de la base de datos
 * `DB_PASSWORD`: Contraseña de la base de datos
 
-
 ### Instrucciones Adicionales
 
 1. Crea un archivo `.env.example` con las variables de entorno necesarias (sin valores sensibles)
 2. Añade un archivo `.gitignore` para excluir:
+
    ```bash
    /node_modules
    /public/hot
@@ -122,8 +119,6 @@ Terminal 2 (Frontend):
    .env.backup
    .phpunit.result.cache
    ```
-
-
 3. Incluye un script en `package.json` para facilitar la instalación:
 
 ```json
