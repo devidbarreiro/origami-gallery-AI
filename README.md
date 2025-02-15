@@ -36,7 +36,7 @@ Origami Gallery es una aplicación web fullstack que permite a los usuarios crea
 
 ```bash
 git clone https://github.com/devidbarreiro/origami-gallery-AI.git
-cd origami-gallery
+cd origami-gallery-AI
 ```
 
 ### 2. Configurar Backend
