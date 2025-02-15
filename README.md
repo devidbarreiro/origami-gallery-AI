@@ -2,7 +2,7 @@
 
 ## 📝 Descripción del Proyecto
 
-Origami Gallery es una aplicación web fullstack que permite a los usuarios crear, visualizar, y gestionar una colección de figuras de origami. La aplicación utiliza Laravel para el backend, React con Inertia.js para el frontend, y aprovecha la API de DALL-E para generar imágenes únicas de origami.
+Origami Gallery es una aplicación web fullstack que permite a los usuarios crear, visualizar y gestionar una colección de figuras de origami. La aplicación utiliza Laravel para el backend, React con Inertia.js para el frontend, y aprovecha la API de DALL-E para generar imágenes únicas de origami.
 
 ## ✨ Características
 
@@ -36,14 +36,13 @@ Origami Gallery es una aplicación web fullstack que permite a los usuarios crea
 
 ```bash
 git clone https://github.com/devidbarreiro/origami-gallery-AI.git
-cd origami-gallery-AI
+cd origami-gallery
 ```
 
 ### 2. Configurar Backend
 
 ```bash
 # Instalar dependencias de PHP
-
 composer install
 
 # Copiar archivo de configuración
@@ -59,7 +58,22 @@ php artisan key:generate
 php artisan migrate
 ```
 
-### 3. Configurar Frontend
+### 3. Configurar permisos del directorio `storage`
+
+En caso de encontrar un error relacionado con la ruta de caché de las vistas, asegúrate de que el directorio `storage` tenga los permisos adecuados ejecutando el siguiente comando:
+
+- En sistemas Unix/Linux/macOS:
+
+  ```bash
+  sudo chmod -R 775 storage
+  ```
+- En Windows (usando PowerShell como administrador):
+
+  ```powershell
+  icacls storage /grant "Everyone:(OI)(CI)F" /t
+  ```
+
+### 4. Configurar Frontend
 
 ```bash
 # Instalar dependencias de Node
@@ -69,16 +83,15 @@ npm install
 npm run dev
 ```
 
-### 4. Configurar OpenAI
+### 5. Configurar OpenAI
 
 1. Obtén tu API key en [OpenAI Platform](https://platform.openai.com/)
 2. Añade la clave en tu archivo `.env`:
+   ```bash
+   OPENAI_API_KEY=tu_clave_api_aqui
+   ```
 
-```bash
-OPENAI_API_KEY=tu_clave_api_aqui
-```
-
-### 5. Iniciar Servidores
+### 6. Iniciar Servidores
 
 Terminal 1 (Backend):
 
@@ -89,26 +102,25 @@ php artisan serve
 Terminal 2 (Frontend):
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
 ## 🖼️ Capturas de Pantalla
 
 ## 🔒 Variables de Entorno
 
-* `OPENAI_API_KEY`: Clave de API de OpenAI
-* `DB_CONNECTION`: Tipo de base de datos
-* `DB_HOST`: Host de la base de datos
-* `DB_PORT`: Puerto de la base de datos
-* `DB_DATABASE`: Nombre de la base de datos
-* `DB_USERNAME`: Usuario de la base de datos
-* `DB_PASSWORD`: Contraseña de la base de datos
+- `OPENAI_API_KEY`: Clave de API de OpenAI
+- `DB_CONNECTION`: Tipo de base de datos
+- `DB_HOST`: Host de la base de datos
+- `DB_PORT`: Puerto de la base de datos
+- `DB_DATABASE`: Nombre de la base de datos
+- `DB_USERNAME`: Usuario de la base de datos
+- `DB_PASSWORD`: Contraseña de la base de datos
 
 ### Instrucciones Adicionales
 
 1. Crea un archivo `.env.example` con las variables de entorno necesarias (sin valores sensibles)
 2. Añade un archivo `.gitignore` para excluir:
-
    ```bash
    /node_modules
    /public/hot
@@ -120,11 +132,13 @@ Terminal 2 (Frontend):
    .phpunit.result.cache
    ```
 3. Incluye un script en `package.json` para facilitar la instalación:
+   ```json
+   "scripts": {
+     "postinstall": "npm run dev",
+     "dev": "vite",
+     "build": "vite build"
+   }
+   ```
 
-```json
-"scripts": {
-  "postinstall": "npm run dev",
-  "dev": "vite",
-  "build": "vite build"
-}
+
 ```
