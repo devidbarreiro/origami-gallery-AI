@@ -17,6 +17,18 @@ class OrigamiFigureController extends Controller
         ]);
     }
 
+    public function update(Request $request, OrigamiFigure $origami)
+    {
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:50|unique:origami_figures,nombre,' . $origami->id,
+            'descripcion' => 'required|string|min:10|max:500',
+        ]);
+
+        $origami->update($validated);
+
+        return back();
+    }
+
     public function store(Request $request)
     {
         Log::channel('daily')->info('Datos recibidos para crear figura', [

@@ -13,6 +13,8 @@ Route::get('/', [OrigamiFigureController::class, 'index'])->name('origami.index'
 Route::get('/origami/create', [OrigamiFigureController::class, 'create'])->name('origami.create');
 Route::post('/origami', [OrigamiFigureController::class, 'store'])->name('origami.store');
 Route::get('/origami/{origami}', [OrigamiFigureController::class, 'show'])->name('origami.show');
+Route::put('/origami/{origami}', [OrigamiFigureController::class, 'update'])
+    ->name('origami.update');
 
 // Rutas para generar imágenes
 Route::post('/origami/generate-image', [DallEController::class, 'generateImage'])

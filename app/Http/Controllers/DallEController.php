@@ -21,11 +21,12 @@ class DallEController extends Controller
         try {
             $request->validate([
                 'nombre' => 'required|string',
-                'descripcion' => 'required|string|min:10'
+                'descripcion' => 'required|string|min:10',
+                'nivel_de_dificultad' => 'required|string|in:fácil,medio,difícil'
             ]);
 
             // Generar el prompt
-            $prompt = $this->generatePrompt($request->nombre, $request->descripcion);
+            $prompt = $this->generatePrompt($request->nombre, $request->descripcion, $request->nivel_de_dificultad);
             
             Log::channel('daily')->info('Generando imagen para nueva figura', [
                 'nombre' => $request->nombre,
@@ -78,7 +79,7 @@ class DallEController extends Controller
         $figure = OrigamiFigure::findOrFail($id);
         
         // Generar el prompt
-        $prompt = $this->generatePrompt($figure->nombre, $figure->descripcion);
+        $prompt = $this->generatePrompt($figure->nombre, $figure->descripcion, $figure->nivel_de_dificultad);
         
         Log::channel('daily')->info('Generando imagen para figura', [
             'figure_id' => $id,
@@ -123,13 +124,37 @@ class DallEController extends Controller
     /**
      * Genera el prompt para DALL-E
      */
-    private function generatePrompt(string $nombre, string $descripcion): string
-    {
-        return "A sophisticated origami {$nombre}, with intricate paper folds, " .
-               "clean design, and minimalistic style. {$descripcion}. " .
-               "Detailed paper textures, professional lighting, " .
-               "clean background to highlight the origami piece.";
+    private function generatePrompt(string $nombre, string $descripcion, string $nivel_de_dificultad): string
+{
+    switch ($nivel_de_dificultad) {
+        case 'fácil':
+            return 
+                "A simple origami {$nombre}, focused on basic folds and a clean design. " .
+                "{$descripcion}. " .
+                "Difficulty level: easy. " .
+                "Beginner-friendly with minimal steps, emphasizing clear lines and straightforward folds. " .
+                "Soft lighting, clean background, and a gentle focus on the paper texture.";
+
+        case 'medio':
+            return 
+                "A moderately complex origami {$nombre}, balancing elegant folds and manageable complexity. " .
+                "{$descripcion}. " .
+                "Difficulty level: medium. " .
+                "Some intricate details while remaining accessible for those with intermediate skills. " .
+                "Professional lighting, clean background, and a clear display of the folded structure.";
+
+        case 'difícil':
+        default:
+            return 
+                "A master-level origami {$nombre} showcasing intricate and highly sophisticated folds. " .
+                "{$descripcion}. " .
+                "Difficulty level: hard. " .
+                "Demands precision and advanced techniques, resulting in a stunning, complex design. " .
+                "High-quality lighting, clean background, and sharp focus to highlight each meticulous fold.";
     }
+}
+
+
 
     /**
  * Crea la imagen usando DALL-E

@@ -65,7 +65,8 @@ const Create = () => {
         },
         body: JSON.stringify({
           nombre: data.nombre,
-          descripcion: data.descripcion
+          descripcion: data.descripcion,
+          nivel_de_dificultad: data.nivel_de_dificultad
         })
       });
 
